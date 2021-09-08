@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      uri: 'mongodb+srv://${user}:${password}@${host}/mongo-partner-account-api?retryWrites=true&w=majority'
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      Fefe:
+        slidingWindowSize: 1
+        minimumNumberOfCalls: 1
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
