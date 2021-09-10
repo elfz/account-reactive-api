@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: ${SERVER_PORT}
 spring:
   data:
     mongodb:
-      uri: 'mongodb+srv://${user}:${password}@${host}/mongo-partner-account-api?retryWrites=true&w=majority'
+      uri: 'mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/mongo-account-reactive-api?retryWrites=true&w=majority'
 
 resilience4j:
   circuitbreaker:
@@ -20,3 +20,9 @@ management:
     web:
       exposure:
         include: "*"
+
+
+integration:
+  partner:
+    url: ${PARTNER_URL}
+    port: ${PARTNER_PORT}

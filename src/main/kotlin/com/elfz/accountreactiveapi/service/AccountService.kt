@@ -1,5 +1,6 @@
 package com.elfz.accountreactiveapi.service
 
+import com.elfz.accountreactiveapi.configuration.PartnerProperties
 import com.elfz.accountreactiveapi.controller.AccountRequest
 import com.elfz.accountreactiveapi.domain.Account
 import com.elfz.accountreactiveapi.domain.Card
@@ -14,7 +15,8 @@ import java.util.logging.Level
 @Service
 class AccountService(
     private val accountReactiveRepository: AccountReactiveRepository,
-    private val cardReactiveRepository: CardReactiveRepository
+    private val cardReactiveRepository: CardReactiveRepository,
+    private val partnerProperties: PartnerProperties
 ) {
 
     private val webclient : WebClient = WebClient.create()
@@ -33,7 +35,7 @@ class AccountService(
 
     private fun callPartner(request: AccountPartnerRequest) = webclient
         .post()
-        .uri("http://localhost:8082/accounts")
+        .uri("${partnerProperties.url}:${partnerProperties.port}/accounts")
         .body(Mono.just(request), AccountPartnerRequest::class.java)
         .retrieve()
         .bodyToMono(AccountPartnerResponse::class.java)
