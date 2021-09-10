@@ -15,3 +15,15 @@ https://www.mongodb.com/pt-br/products/compass
 * PARTNER_URL
 * PARTNER_PORT
 
+# Doc heroku
+https://devcenter.heroku.com/articles/getting-started-with-gradle-on-heroku#deploy-the-app
+
+# Definir variáveis de ambiente pelo heroku
+* heroku config:set SERVER_PORT=port;
+* heroku config:set DB_USER=user;
+* heroku config:set DB_PASSWORD=password;
+* heroku config:set DB_HOST=host;
+* heroku config:set PARTNER_URL=url;
+* heroku config:set PARTNER_PORT=port;
+
+
