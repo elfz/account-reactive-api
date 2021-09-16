@@ -19,7 +19,7 @@ class AccountController(
             .flatMap { accountService.create(it) }
 
     @GetMapping
-    fun findAccounts(@RequestBody account: AccountRequest) =
+    fun findAccounts() =
             accountService.findAll()
 
 }

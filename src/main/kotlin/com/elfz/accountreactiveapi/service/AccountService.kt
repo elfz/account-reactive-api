@@ -33,7 +33,7 @@ class AccountService(
             .flatMap { Mono.just(it.t1) }
 
     fun findAll() =
-            cardReactiveRepository.findAll()
+            accountReactiveRepository.findAll()
 
 
     private fun callPartner(request: AccountPartnerRequest) = webclient
