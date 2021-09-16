@@ -32,6 +32,9 @@ class AccountService(
             .zipWhen { cardReactiveRepository.save(Card()) }
             .flatMap { Mono.just(it.t1) }
 
+    fun findAll() =
+            cardReactiveRepository.findAll()
+
 
     private fun callPartner(request: AccountPartnerRequest) = webclient
         .post()
