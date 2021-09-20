@@ -25,5 +25,4 @@ https://devcenter.heroku.com/articles/getting-started-with-gradle-on-heroku#depl
 * heroku config:set DB_HOST=host;
 * heroku config:set PARTNER_URL=url;
 * heroku config:set PARTNER_PORT=port;
-
-
+* heroku config:add TZ="America/Sao_Paulo"
