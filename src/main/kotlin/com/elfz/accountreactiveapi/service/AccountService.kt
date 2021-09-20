@@ -3,9 +3,7 @@ package com.elfz.accountreactiveapi.service
 import com.elfz.accountreactiveapi.configuration.PartnerProperties
 import com.elfz.accountreactiveapi.controller.AccountRequest
 import com.elfz.accountreactiveapi.domain.Account
-import com.elfz.accountreactiveapi.domain.Card
 import com.elfz.accountreactiveapi.repository.AccountReactiveRepository
-import com.elfz.accountreactiveapi.repository.CardReactiveRepository
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
@@ -15,7 +13,6 @@ import java.util.logging.Level
 @Service
 class AccountService(
     private val accountReactiveRepository: AccountReactiveRepository,
-    private val cardReactiveRepository: CardReactiveRepository,
     private val partnerProperties: PartnerProperties
 ) {
 
@@ -23,14 +20,14 @@ class AccountService(
 
     fun create(accountRequest: AccountRequest) =
         Mono.just(buildPartnerAccountRequest())
+            .log("AccountService.create call partner starting", Level.INFO, SignalType.ON_NEXT)
             .flatMap { callPartner(it) }
+            .log("AccountService.create call partner finished", Level.INFO, SignalType.ON_NEXT)
             .flatMap { buildAccount(it, accountRequest.clientId) }
-            .log("AccountService.create", Level.INFO, SignalType.ON_NEXT)
+            .log("AccountService.create call database starting", Level.INFO, SignalType.ON_NEXT)
             .flatMap { accountReactiveRepository.save(it) }
-            .log("AccountService.create saved", Level.INFO, SignalType.ON_NEXT)
-            .log("AccountService.create save failed", Level.INFO, SignalType.ON_ERROR)
-            .zipWhen { cardReactiveRepository.save(Card()) }
-            .flatMap { Mono.just(it.t1) }
+            .log("AccountService.create call database saved", Level.INFO, SignalType.ON_NEXT)
+
 
     fun findAll() =
             accountReactiveRepository.findAll()
