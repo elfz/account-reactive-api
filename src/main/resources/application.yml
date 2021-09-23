@@ -5,12 +5,14 @@ spring:
     mongodb:
       uri: 'mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/mongo-account-reactive-api?retryWrites=true&w=majority'
 
+###### RESILIENCE4J CIRCUIT-BREAKER ###########
 resilience4j:
   circuitbreaker:
     instances:
-      Fefe:
-        slidingWindowSize: 1
-        minimumNumberOfCalls: 1
+      createPartnerAccount:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 25
 
 management:
   endpoint:

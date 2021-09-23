@@ -13,7 +13,7 @@ class AccountController(
 ) {
 
     @PostMapping
-    @CircuitBreaker(name = "Fefe")
+    @CircuitBreaker(name = "createPartnerAccount")
     fun createAccount(@RequestBody account: AccountRequest): Mono<Account> =
         Mono.just(account)
             .flatMap { accountService.create(it) }

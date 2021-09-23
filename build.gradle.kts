@@ -28,7 +28,6 @@ dependencies {
     implementation("io.github.resilience4j:resilience4j-reactor:$resilience4j")
     implementation("io.github.resilience4j:resilience4j-spring-boot2:$resilience4j")
     implementation("org.springframework.boot:spring-boot-starter-aop")
-    // implementation("io.github.resilience4j:resilience4j-kotlin:$resilience4j")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
